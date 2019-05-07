@@ -1,26 +1,34 @@
-# Uses python3
-import sys
-import itertools
-import random
+"""
+Input Format. The first line contains an integer 𝑛. The second line contains integers 𝑣1, 𝑣2, . . . , 𝑣𝑛 separated
+by spaces.
+
+Constraints. 1 ≤ 𝑛 ≤ 20, 1 ≤ 𝑣𝑖 ≤ 30 for all 𝑖.
+
+Output Format. Output 1, if it possible to partition 𝑣1, 𝑣2, . . . , 𝑣𝑛 into three subsets with equal sums, and
+0 otherwise.
+
+"""
 
 
-def partition3(A):
-    total = sum(A)
-    n = len(A)
+def partition3d(souvenirs):
+    total = sum(souvenirs)
+    souvenirs_len = len(souvenirs)
+
     if total % 3 != 0:
         return 0
 
     total = total//3
-    v = init_matrix3(total, total, n)
+    v = init_matrix3d(total, total, souvenirs_len)
+
     for tot_1 in range(total+1):
         for tot_2 in range(total+1):
-            for ai in range(n+1):
+            for ai in range(souvenirs_len+1):
                 if tot_1 == tot_2 == 0:
                     v[tot_1][tot_2][ai] = 1
                 elif ai == 0 and (tot_1 != 0 or tot_2 != 0):
                     v[tot_1][tot_2][ai] = 0
                 else:
-                    a = A[ai-1]
+                    a = souvenirs[ai - 1]
                     if tot_1 >= a:
                         d11 = v[tot_1-a][tot_2][ai-1]
                         d12 = v[tot_1][tot_2][ai - 1]
@@ -34,96 +42,29 @@ def partition3(A):
                     else:
                         d2 = v[tot_1][tot_2][ai-1]
                     v[tot_1][tot_2][ai] = max(d1, d2)
-    return v[total][total][n]
+
+    return v[total][total][souvenirs_len]
 
 
-def partition2(A):
-    total = sum(A)
-    n = len(A)
-    if total % 2 != 0:
-        return 0
-    else:
-        total = total // 2
-        v = init_matrix(total, n)
-        for tot in range(total+1):
-            for ai in range(n+1):
-                if tot == 0:
-                    v[tot][ai] = 1
-                elif ai == 0 and tot != 0:
-                    v[tot][ai] = 0
-                else:
-                    a = A[ai-1]
-                    if tot >= a:
-                        d1 = v[tot-a][ai-1]
-                        d2 = v[tot][ai-1]
-                        v[tot][ai] = max(d1, d2)
-                    else:
-                        v[tot][ai] = v[tot][ai-1]
-
-    return v[total][n]
-
-
-def init_matrix(n, m):
+def init_matrix(n1, n2):
     matrix = []
-    for i in range(n+1):
-        l = []
-        for j in range(m+1):
-            l.append(0)
-        matrix.append(l)
+    for i in range(n1 + 1):
+        row = []
+        for j in range(n2 + 1):
+            row.append(0)
+        matrix.append(row)
     return matrix
 
 
-def init_matrix3(n1, n2, n3):
+def init_matrix3d(n1, n2, n3):
     matrix = []
     for i in range(n1+1):
-        l = init_matrix(n2, n3)
-        matrix.append(l)
+        row = init_matrix(n2, n3)
+        matrix.append(row)
     return matrix
-
-
-def generate_array(total):
-    size = random.randint(1, 5)
-    sum = 0
-    a = []
-    for _ in range(size-1):
-        new = random.randint(0, total-sum)
-        sum += new
-        a.append(new)
-    a.append(total-sum)
-    return a
-
-
-def naive():
-    total = random.randint(10, 100)
-    l = []
-    a = []
-    for _ in range(3):
-        k = generate_array(total)
-        a.append(k)
-        l += k
-    return shuffle(l), a
-
-
-def shuffle(l):
-    for _ in range(10):
-        i = random.randint(0, len(l)-1)
-        l[i], l[1] = l[1], l[i]
-    return l
 
 
 if __name__ == '__main__':
-    # A = [3, 3, 3, 3, 5, 58, 1, 48]
-    # partition2(A)
-    while True:
-        A, a = naive()
-        if partition3(A+[2, 1]) == 0:
-            print("OK")
-        else:
-            print(A)
-            print(a)
-            break
-
-    input = sys.stdin.read()
-    n, *A = list(map(int, input.split()))
-    print(partition3(A))
+    n, *A = list(map(int, input().split()))
+    print(partition3d(A))
 
