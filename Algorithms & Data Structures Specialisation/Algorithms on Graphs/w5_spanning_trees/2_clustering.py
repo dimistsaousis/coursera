@@ -1,4 +1,18 @@
-#Uses python3
+"""
+Task. Given n points on a plane and an integer k, compute the largest possible value of d such that the
+given points can be partitioned into k non-empty subsets in such a way that the distance between any
+two points from different subsets is at least d.
+
+Input Format. The first line contains the number n of points. Each of the following n lines defines a point
+(xi , yi). The last line contains the number k of clusters.
+
+Constraints. 2 ≤ k ≤ n ≤ 200; −103 ≤ xi , yi ≤ 103 are integers. All points are pairwise different.
+
+Output Format. Output the largest value of d. The absolute value of the difference between the answer of
+your program and the optimal value should be at most 10−6. To ensure this, output your answer with at least seven
+digits after the decimal point (otherwise your answer, while being computed correctly, can turn out to be wrong
+because of rounding issues).
+"""
 import sys
 import math
 import queue
@@ -63,12 +77,12 @@ def clustering(x, y, k):
 
 
 if __name__ == '__main__':
-    input = sys.stdin.read()
-    data = list(map(int, input.split()))
+    inp = sys.stdin.read()
+    data = list(map(int, inp.split()))
     n = data[0]
     data = data[1:]
-    x = data[0:2 * n:2]
-    y = data[1:2 * n:2]
+    x_ = data[0:2 * n:2]
+    y_ = data[1:2 * n:2]
     data = data[2 * n:]
-    k = data[0]
-    print("{0:.9f}".format(clustering(x, y, k)))
+    k_ = data[0]
+    print("{0:.9f}".format(clustering(x_, y_, k_)))

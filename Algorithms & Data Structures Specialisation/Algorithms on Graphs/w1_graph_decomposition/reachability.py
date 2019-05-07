@@ -1,24 +1,32 @@
-#Uses python3
+"""
+Task. Given an undirected graph with 𝑛 vertices and 𝑚 edges, compute the number of connected components in it.
+
+Input Format. A graph is given in the standard format.
+
+Constraints. 1 ≤ 𝑛 ≤ 103, 0 ≤ 𝑚 ≤ 103.
+
+Output Format. Output the number of connected components.
+"""
 
 import sys
 
 
-def explore(adj, x, y, visited=None):
+def explore(adj_array, x, y, visited=None):
     visited = [] if visited is None else visited
     visited.append(x)
 
-    for w in adj[x]:
+    for w in adj_array[x]:
         if w == y:
             return True
         if w not in visited:
-            if explore(adj, w, y, visited):
+            if explore(adj_array, w, y, visited):
                 return True
 
     return False
 
 
-def reach(adj, x, y):
-    return 1 if explore(adj, x, y) else 0
+def reach(adj_array, x, y):
+    return 1 if explore(adj_array, x, y) else 0
 
 
 if __name__ == '__main__':

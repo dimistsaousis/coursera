@@ -1,4 +1,12 @@
-#Uses python3
+"""
+Task. Given an undirected graph with n vertices and m edges, check whether it is bipartite.
+
+Input Format. A graph is given in the standard format.
+
+Constraints. 1 ≤ n ≤ 105, 0 ≤ m ≤ 105.
+
+Output Format. Output 1 if the graph is bipartite and 0 otherwise.
+"""
 
 import sys
 import queue
@@ -18,17 +26,17 @@ class Queue:
         return len(self._array) == 0
 
 
-def bipartite(adj):
+def bipartite(adj_arr):
     s = 0
-    n = len(adj)
-    colors = [-1 for _ in range(n)]
+    adj_len = len(adj_arr)
+    colors = [-1 for _ in range(adj_len)]
     colors[s] = 0
     q = Queue()
     q.add(s)
 
     while not q.empty():
         u = q.next()
-        for v in adj[u]:
+        for v in adj_arr[u]:
             if colors[v] == -1:
                 q.add(v)
                 colors[v] = (colors[u] + 1) % 2
@@ -38,8 +46,8 @@ def bipartite(adj):
 
 
 if __name__ == '__main__':
-    input = sys.stdin.read()
-    data = list(map(int, input.split()))
+    inp = sys.stdin.read()
+    data = list(map(int, inp.split()))
     n, m = data[0:2]
     data = data[2:]
     edges = list(zip(data[0:(2 * m):2], data[1:(2 * m):2]))
