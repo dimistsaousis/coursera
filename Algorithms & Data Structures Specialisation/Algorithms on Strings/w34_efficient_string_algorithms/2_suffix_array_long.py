@@ -1,5 +1,11 @@
-# python3
-import sys
+"""
+Task. Construct the suffix array of a string.
+
+Input Format. A string Text ending with a “$” symbol. Constraints. 1 ≤ |Text(Text)| ≤ 2 · 105; except for the last
+symbol, Text contains symbols A, C, G, T only.
+
+Output Format. SuffixArray(Text), that is, the list of starting positions of sorted suffixes separated by spaces.
+"""
 
 
 def build_suffix_array(text):
@@ -91,49 +97,6 @@ def update_classes(text_order, text_class, layer):
     return new_class
 
 
-def find_occurrences(text, pattern, suffix_array):
-    len_text = len(text)
-    len_pattern = len(pattern)
-
-    min_index = 0
-    max_index = len_text
-
-    while min_index < max_index:
-        mid_index = (min_index+max_index)//2
-        if pattern > text[suffix_array[mid_index]:]:
-            min_index = mid_index + 1
-        else:
-            max_index = mid_index
-
-    start = min_index
-    max_index = len_text
-
-    while min_index < max_index:
-        mid_index = (max_index + min_index)//2
-        start_idx = suffix_array[mid_index]
-        end_idx = min(start_idx+len_pattern, len_text)
-        if text[start_idx:end_idx] > pattern:
-            max_index = mid_index
-        else:
-            min_index = mid_index+1
-    end = max_index
-
-    return set(suffix_array[start:end])
-
-
-def find_all_occurrences(text, patterns):
-    text = text + '$'
-    suffix_array = build_suffix_array(text)
-    occurrences = set()
-    for pattern in patterns:
-        occurrences.update(find_occurrences(text, pattern, suffix_array))
-
-    return occurrences
-
-
 if __name__ == '__main__':
-    t = sys.stdin.readline().strip()
-    pattern_count = int(sys.stdin.readline().strip())
-    p = sys.stdin.readline().strip().split()
-    ocs = find_all_occurrences(t, p)
-    print(" ".join(map(str, ocs)))
+    t = input().strip()
+    print(" ".join(map(str, build_suffix_array(t))))

@@ -1,5 +1,14 @@
-# python3
-import sys
+"""
+Task. Implement BetterBWMatching algorithm.
+Input Format. A string BWT(Text), followed by an integer 𝑛 and a collection of 𝑛 strings Patterns =
+{𝑝1, . . . , 𝑝𝑛} (on one line separated by spaces).
+
+Constraints. 1 ≤ |BWT(Text)| ≤ 106; except for the one $ symbol, BWT(Text) contains symbols A, C, G, T only;
+1 ≤ 𝑛 ≤ 5 000; for all 1 ≤ 𝑖 ≤ 𝑛, 𝑝𝑖 is a string over A, C, G, T; 1 ≤ |𝑝𝑖 | ≤ 1 000.
+
+Output Format. A list of integers, where the 𝑖-th integer corresponds to the number of substring matches
+of the 𝑖-th member of Patterns in Text.
+"""
 from collections import defaultdict
 
 
@@ -47,9 +56,9 @@ def count_occurrences(p, last_column, first_occurrence, char_count_before):
 
 
 if __name__ == '__main__':
-    bwt = sys.stdin.readline().strip()
-    pattern_count = int(sys.stdin.readline().strip())
-    patterns = sys.stdin.readline().strip().split()
+    bwt = input().strip()
+    pattern_count = int(input().strip())
+    patterns = input().strip().split()
     starts, occ_counts_before = preprocessed_bwt(bwt)
     occurrence_counts = []
     for pattern in patterns:

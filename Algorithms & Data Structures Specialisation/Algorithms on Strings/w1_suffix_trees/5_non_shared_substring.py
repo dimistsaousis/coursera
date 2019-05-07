@@ -1,4 +1,16 @@
-# python3
+"""
+Task. Find the shortest substring of one string that does not appear in another string.
+
+Input Format. Strings Text1 and Text2.
+
+Constraints. 1 ≤ |Text1|, |Text2| ≤ 2 000; strings have equal length (|Text1| = |Text2|), are not equal
+(Text1 ̸= Text2), and contain symbols A, C, G, T only.
+
+Output Format. The shortest (non-empty) substring of Text1 that does not appear in Text2. (Multiple
+solutions may exist, in which case you may return any one.)
+
+"""
+
 import sys
 import threading
 sys.setrecursionlimit(10**6)  # max depth of recursion

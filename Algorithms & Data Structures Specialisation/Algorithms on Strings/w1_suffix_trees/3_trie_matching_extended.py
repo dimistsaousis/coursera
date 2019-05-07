@@ -1,5 +1,17 @@
-# python3
-import sys
+"""
+Task. Extend TrieMatching algorithm so that it handles correctly cases when one of the patterns is a
+prefix of another one.
+
+Input Format. The first line of the input contains a string Text, the second line contains an integer 𝑛,
+each of the following 𝑛 lines contains a pattern from Patterns = {𝑝1, . . . , 𝑝𝑛}.
+
+Constraints. 1 ≤ |Text| ≤ 10 000; 1 ≤ 𝑛 ≤ 5 000; 1 ≤ |𝑝𝑖 | ≤ 100 for all 1 ≤ 𝑖 ≤ 𝑛; all strings contain only
+symbols A, C, G, T; it can be the case that 𝑝𝑖 is a prefix of 𝑝𝑗 for some 𝑖, 𝑗.
+
+Output Format. All starting positions in Text where a string from Patterns appears as a substring in
+increasing order (assuming that Text is a 0-based array of symbols). If more than one pattern
+appears starting at position 𝑖, output 𝑖 once.
+"""
 
 NA = -1
 
@@ -55,7 +67,7 @@ def prefix_trie_matching(text, trie):
             return count
 
 
-def solve (text, n, patterns):
+def solve (text, patterns):
     trie = build_trie(patterns)
     results = []
     for i in range(len(text)):
@@ -67,12 +79,10 @@ def solve (text, n, patterns):
 
 
 if __name__ == '__main__':
-    text = sys.stdin.readline().strip()
-    n = int(sys.stdin.readline().strip())
-    patterns = []
-    for i in range(n):
-        patterns += [sys.stdin.readline().strip()]
+    txt = input().strip()
+    n = int(input().strip())
+    patt = []
+    for _ in range(n):
+        patt += [input().strip()]
 
-    ans = solve(text, n, patterns)
-
-    sys.stdout.write(' '.join(map(str, ans)) + '\n')
+    ans = solve(txt, patt)

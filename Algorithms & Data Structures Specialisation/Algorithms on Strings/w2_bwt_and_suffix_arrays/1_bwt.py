@@ -1,5 +1,12 @@
-# python3
-import sys
+"""
+Task. Construct the Burrows–Wheeler transform of a string.
+
+Input Format. A string Text ending with a “$” symbol.
+
+Constraints. 1 ≤ |Text| ≤ 1 000; except for the last symbol, Text contains symbols A, C, G, T only.
+
+Output Format. BWT(Text).
+"""
 
 
 def bwt(text):
@@ -17,5 +24,5 @@ def bwt(text):
 
 
 if __name__ == '__main__':
-    t = sys.stdin.readline().strip()
+    t = input().strip()
     print(bwt(t))

@@ -1,5 +1,15 @@
-# python3
-import sys
+"""
+Task. Find all occurrences of a given collection of patterns in a string.
+
+Input Format. The first line contains a string Text). The second line specifies an integer 𝑛. The last line
+gives a collection of 𝑛 strings Patterns = {𝑝1, . . . , 𝑝𝑛} separated by spaces.
+
+Constraints. All strings contain symbols A, C, G, T only; 1 ≤ |Text| ≤ 105 ; 1 ≤ 𝑛 ≤ 104; ∑︀𝑛 𝑖=1 |𝑝𝑖 | ≤ 105.
+
+Output Format. All starting positions (in any order) in Text where a pattern appears as a substring (using
+0-based indexing as usual). If several patterns occur at the same position of the Text, still output this
+position only once
+"""
 
 
 def build_suffix_array(text):
@@ -91,6 +101,49 @@ def update_classes(text_order, text_class, layer):
     return new_class
 
 
+def find_occurrences(text, pattern, suffix_array):
+    len_text = len(text)
+    len_pattern = len(pattern)
+
+    min_index = 0
+    max_index = len_text
+
+    while min_index < max_index:
+        mid_index = (min_index+max_index)//2
+        if pattern > text[suffix_array[mid_index]:]:
+            min_index = mid_index + 1
+        else:
+            max_index = mid_index
+
+    start = min_index
+    max_index = len_text
+
+    while min_index < max_index:
+        mid_index = (max_index + min_index)//2
+        start_idx = suffix_array[mid_index]
+        end_idx = min(start_idx+len_pattern, len_text)
+        if text[start_idx:end_idx] > pattern:
+            max_index = mid_index
+        else:
+            min_index = mid_index+1
+    end = max_index
+
+    return set(suffix_array[start:end])
+
+
+def find_all_occurrences(text, patterns):
+    text = text + '$'
+    suffix_array = build_suffix_array(text)
+    occurrences = set()
+    for pattern in patterns:
+        occurrences.update(find_occurrences(text, pattern, suffix_array))
+
+    return occurrences
+
+
 if __name__ == '__main__':
-    t = sys.stdin.readline().strip()
-    print(" ".join(map(str, build_suffix_array(t))))
+    t = input().strip()
+    pattern_count = int(input().strip())
+    p = input().split()
+    ocs = find_all_occurrences(t, p)
+    print(" ".join(map(str, ocs)))

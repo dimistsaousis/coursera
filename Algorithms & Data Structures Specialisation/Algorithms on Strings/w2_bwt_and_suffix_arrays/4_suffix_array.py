@@ -1,5 +1,13 @@
-# python3
-import sys
+"""
+Task. Construct the suffix array of a string.
+
+Input Format. A string Text ending with a “$” symbol.
+
+Constraints. 1 ≤ |Text(Text)| ≤ 104 ; except for the last symbol, Text contains symbols A, C, G, T only.
+
+Output Format. SuffixArray(Text), that is, the list of starting positions (0-based) of sorted suffixes separated
+by spaces.
+"""
 
 
 def build_suffix_array(t):
@@ -16,11 +24,8 @@ def build_suffix_array(t):
         res.append(t[i:])
 
     return sorted(res)
-    # suffix_array = [i for i in range(n)]
-    #
-    # return sorted(suffix_array, key=lambda x: res[x])
 
 
 if __name__ == '__main__':
-    text = sys.stdin.readline().strip()
+    text = input().strip()
     print(" ".join(map(str, build_suffix_array(text))))

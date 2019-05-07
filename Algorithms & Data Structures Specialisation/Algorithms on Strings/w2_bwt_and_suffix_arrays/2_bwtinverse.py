@@ -1,8 +1,16 @@
-# python3
-import sys
+"""
+Task. Reconstruct a string from its Burrows–Wheeler transform.
+
+Input Format. A string Transform with a single “$” sign.
+
+Constraints. 1 ≤ |Transform| ≤ 1 000 000; except for the last symbol, Text contains symbols A, C, G, T
+only.
+
+Output Format. The string Text such that BWT(Text) = Transform. (There exists a unique such string.)
+"""
 
 
-def inverse_bwt(bwt):
+def get_inverse_bwt(bwt):
     count = [0, 0, 0, 0, 0]
     bwt_tup = []
     for i, el in enumerate(bwt):
@@ -45,5 +53,5 @@ def inverse_bwt(bwt):
 
 
 if __name__ == '__main__':
-    bwt = sys.stdin.readline().strip()
-    print(inverse_bwt(bwt))
+    bwt_ = input().strip()
+    print(get_inverse_bwt(bwt_))

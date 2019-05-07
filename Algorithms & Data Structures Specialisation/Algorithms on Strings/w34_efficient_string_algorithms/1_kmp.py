@@ -1,5 +1,11 @@
-# python3
-import sys
+"""
+Task. Find all occurrences of a pattern in a string.
+Input Format. Strings 𝑃 𝑎𝑡𝑡𝑒𝑟𝑛 and 𝐺𝑒𝑛𝑜𝑚𝑒.
+
+Constraints. 1 ≤ |𝑃 𝑎𝑡𝑡𝑒𝑟𝑛| ≤ 106 ; 1 ≤ |𝐺𝑒𝑛𝑜𝑚𝑒| ≤ 106 ; both strings are over A, C, G, T.
+
+Output Format. All starting positions in 𝐺𝑒𝑛𝑜𝑚𝑒 where 𝑃 𝑎𝑡𝑡𝑒𝑟𝑛 appears as a substring (using 0-based indexing as usual).
+"""
 
 
 def find_pattern(pattern, text):
@@ -35,8 +41,8 @@ def compute_prefix_function(text):
 
 
 if __name__ == '__main__':
-    p = sys.stdin.readline().strip()
-    t = sys.stdin.readline().strip()
+    p = input().strip()
+    t = input().strip()
     res = find_pattern(p, t)
     print(" ".join(map(str, res)))
 

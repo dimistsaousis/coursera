@@ -1,5 +1,12 @@
-# python3
-import sys
+"""
+Task. Construct the suffix tree of a string.
+
+Input Format. A string Text ending with a “$” symbol.
+
+Constraints. 1 ≤ |Text| ≤ 5 000; except for the last symbol, Text contains symbols A, C, G, T only.
+
+Output Format. The strings labeling the edges of SuffixTree(Text) in any order.
+"""
 
 
 def max_substring(text_1, text_2):
@@ -125,6 +132,6 @@ def breadth_first_edges(tree_root, text):
 
 
 if __name__ == '__main__':
-    input_text = sys.stdin.readline().strip()
+    input_text = input().strip()
     res = build_suffix_tree(input_text)
     print("\n".join(res))
