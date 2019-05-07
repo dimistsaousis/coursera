@@ -1,4 +1,24 @@
-# python3
+"""
+Task. The airline offers a bunch of flights and has a set of crews that can work on those flights. However,
+the flights are starting in different cities and at different times, so only some of the crews are able to
+work on a particular flight. You are given the pairs of flights and associated crews that can work on
+those flights. You need to assign crews to as many flights as possible and output all the assignments.
+
+Input Format. The first line of the input contains integers 𝑛 and 𝑚 — the number of flights and the number
+of crews respectively. Each of the next 𝑛 lines contains 𝑚 binary integers (0 or 1). If the 𝑗-th integer
+in the 𝑖-th line is 1, then the crew number 𝑗 can work on the flight number 𝑖, and if it is 0, then it
+cannot.
+
+Constraints. 1 ≤ 𝑛, 𝑚 ≤ 100.
+
+Output Format. Output 𝑛 integers — for each flight, output the 1-based index of the crew assigned to
+this flight. If no crew is assigned to a flight, output −1 as the index of the crew corresponding to it.
+All the positive indices in the output must be between 1 and 𝑚, and they must be pairwise different,
+but you can output any number of −1’s. If there are several assignments with the maximum possible
+number of flights having a crew assigned, output any of them.
+"""
+
+
 class Queue:
     def __init__(self):
         self._arr = []
