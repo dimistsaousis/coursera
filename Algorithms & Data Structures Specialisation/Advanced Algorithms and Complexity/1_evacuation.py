@@ -113,8 +113,10 @@ def compute_max_flow(nodes):
 
 
 if __name__ == '__main__':
+
     vertex_count, edge_count = map(int, input().split())
     ns = [Node(i) for i in range(vertex_count)]
+
     for _ in range(edge_count):
         u, v, c = map(int, input().split())
         e = Edge(start_node=ns[u-1], end_node=ns[v-1], capacity=c)
@@ -123,4 +125,5 @@ if __name__ == '__main__':
         e_inverse.inverse_edge = e
         ns[u-1].add_edge(e)
         ns[v-1].add_edge(e_inverse)
+
     print(compute_max_flow(ns))
